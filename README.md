@@ -28,11 +28,20 @@ Server runs at http://localhost:8000
 In new terminal (venv active):
 python test_api.py
 
-## API Endpoints
-- `POST /api/mood-checkin` - Mood logging + AI CBT  
-- `POST /api/thought-reframe` - Cognitive reframing  
-- `POST /api/financial-leaks` - Find subscription leaks  
-- `GET /health` - Server status  
+## Endpoints (6 Total)
+
+### Original 3 Endpoints
+- `POST /api/mood-checkin` - Mood logging + AI CBT response
+- `POST /api/thought-reframe` - Cognitive reframing (3 alternatives)
+- `POST /api/financial-leaks` - Find subscription leaks
+
+### NEW Day 2 Endpoints (Peer Matching)
+- `POST /api/find-match` - Find accountability partner with matching profile
+- `POST /api/send-message` - Send anonymous message to matched peer
+
+### Health
+- `GET /health` - Server status check
+  
 
 ## Project Structure ✅  
 ✅ .env (keys loaded)  
@@ -44,6 +53,14 @@ python test_api.py
 ✅ .gitignore  
 ✅ test_api.py  
 ✅ README.md ← CURRENT  
+## Status
+✅ MVP Version 0.2.0
+✅ 6 Core endpoints working
+✅ Peer matching algorithm built
+✅ Anonymous chat backend ready
+✅ All 6 tests passing
+✅ 100% FREE (Groq)
+✅ Ready for beta testing
 
 **🚀 100% FREE • Powered by Groq • Ready to run!**
 
