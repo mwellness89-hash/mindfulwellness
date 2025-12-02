@@ -37,3 +37,27 @@ class FinancialLeakResponse(BaseModel):
     mental_frame: str
     total_savings: Optional[float] = None
 
+
+class UserProfileRequest(BaseModel):
+    user_id: str
+    profession: str  # e.g., "Software Engineer"
+    salary_range: str  # e.g., "200k-250k"
+    main_stress: str  # e.g., "debt"
+    mood_average: int  # 1-10
+
+class FindMatchResponse(BaseModel):
+    matched_user_id: str  # Anonymous ID
+    match_score: int  # 0-100
+    common_stress: str
+    message: str
+
+class SendMessageRequest(BaseModel):
+    sender_id: str  # Your anonymous ID
+    match_id: int  # ID of your match
+    message: str
+
+class SendMessageResponse(BaseModel):
+    success: bool
+    message_id: int
+    sent_at: str
+

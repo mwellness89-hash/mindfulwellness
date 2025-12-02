@@ -58,13 +58,47 @@ def test_financial_leaks():
     print(f"Response: {json.dumps(response.json(), indent=2)}")
     assert response.status_code == 200
 
+def test_find_match():
+    print("\n5. Testing FIND MATCH endpoint (Peer matching)...")
+    data = {
+        "user_id": "test_user_001",
+        "profession": "Software Engineer",
+        "salary_range": "200k-250k",
+        "main_stress": "debt",
+        "mood_average": 6
+    }
+    response = requests.post(f"{BASE_URL}/api/find-match", json=data)
+    print(f"Status: {response.status_code}")
+    print(f"Response: {json.dumps(response.json(), indent=2)}")
+    assert response.status_code == 200
+    assert response.json()["match_score"] > 0
+    print("✅ FIND MATCH test passed")
+
+def test_send_message():
+    print("\n6. Testing SEND MESSAGE endpoint (Anonymous chat)...")
+    data = {
+        "sender_id": "anon_user_001",
+        "match_id": 1,
+        "message": "Hey, I also struggle with financial stress. How are you coping?"
+    }
+    response = requests.post(f"{BASE_URL}/api/send-message", json=data)
+    print(f"Status: {response.status_code}")
+    print(f"Response: {json.dumps(response.json(), indent=2)}")
+    assert response.status_code == 200
+    assert response.json()["success"] == True
+    print("✅ SEND MESSAGE test passed")
+
 if __name__ == "__main__":
     try:
         test_health()
         test_mood_checkin()
         test_thought_reframe()
         test_financial_leaks()
-        print("\n✅ ALL TESTS PASSED!")
+        test_find_match()
+        test_send_message()
+        print("\n" + "="*50)
+        print("✅ ALL 6 TESTS PASSED!")
+
         print("💰 COST: $0")
         print("🚀 POWERED BY: Groq (Free)")
     except Exception as e:

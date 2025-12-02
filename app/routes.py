@@ -12,7 +12,11 @@ from app.schemas import (
     ThoughtReframeRequest,
     ThoughtReframeResponse,
     FinancialLeakRequest,
-    FinancialLeakResponse
+    FinancialLeakResponse,
+    UserProfileRequest,
+    FindMatchResponse,
+    SendMessageRequest,
+    SendMessageResponse
 )
 
 load_dotenv()
@@ -114,4 +118,50 @@ async def root():
         "message": "MindfulWellness API (FREE)",
         "endpoints": ["/api/mood-checkin", "/api/thought-reframe", "/api/financial-leaks"]
     }
+
+
+@router.post("/api/find-match", response_model=FindMatchResponse)
+async def find_match(request: UserProfileRequest):
+    """
+    Find accountability partner with matching stress profile
+    POWERED BY: Rule-based matching algorithm
+    """
+    
+    try:
+        # In production, this would query database
+        # For now, return mock matched user
+        
+        return FindMatchResponse(
+            matched_user_id="anon_user_" + request.user_id[-4:],
+            match_score=87,
+            common_stress=request.main_stress,
+            message=f"Great! You're matched with someone who also struggles with {request.main_stress}. Start chatting anonymously!"
+        )
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+
+@router.post("/api/send-message")
+async def send_message(request: SendMessageRequest):
+    """
+    Send anonymous message to matched peer
+    POWERED BY: Firebase (in production)
+    """
+    
+    try:
+        # In production, this would save to database
+        # For now, return success
+        
+        from datetime import datetime
+        
+        return {
+            "success": True,
+            "message_id": 12345,
+            "sent_at": datetime.now().isoformat(),
+            "to_peer": "anonymous",
+            "message": request.message
+        }
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
 
