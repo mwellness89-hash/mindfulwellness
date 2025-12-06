@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 ### 2. Configure Environment
 Your `.env` file is already created:
-GROQ_API_KEY=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
+GROQ_API_KEY=your_groq_key_here
 GOOGLE_API_KEY=AIzaSyBt89gPI5iUQU0SU14V_cvDj_PfTRg6LfY
 DATABASE_URL=sqlite:///mindfulwellness.db
 ENVIRONMENT=development
