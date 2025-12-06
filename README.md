@@ -1,6 +1,18 @@
 # MindfulWellness MVP - 100% FREE
 
 AI Mental Health + Financial Stress Relief Platform
+```markdown
+## 🌍 **LIVE ON INTERNET NOW!**
+
+### **Public API URL:**
+https://mindfulwellness.onrender.com
+
+**Test it:** curl YOUR_RENDER_URL/health
+
+**Status:** ✅ Running 24/7 on Render (FREE tier)
+
+---
+
 
 **Cost: $0**  
 **Powered by: Groq (Free API)**
