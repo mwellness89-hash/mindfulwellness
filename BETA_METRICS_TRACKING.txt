@@ -1,0 +1,91 @@
+=== MINDFULWELLNESS BETA METRICS ===
+
+LAUNCH DATE: Dec 8, 2025
+CAMPAIGN DURATION: [Ongoing]
+
+---
+
+## SIGN-UP FORM (Google Form)
+
+Link: https://docs.google.com/forms/d/e/1FAIpQLScYVnBbdaIC-h_nAJ9cTvt3HGiyjzZRX1P8Eopuv6kd_s9xUg/viewform?usp=header
+
+RESPONSES BY DAY:
+Day 1 (Dec 8): [X] responses
+Day 2 (Dec 9): [X] responses
+Day 3 (Dec 10): [X] responses
+Day 4 (Dec 11): [X] responses
+Day 5 (Dec 12): [X] responses
+Day 6 (Dec 13): [X] responses
+Day 7 (Dec 14): [X] responses
+
+WEEK 1 TOTAL: [X] responses
+TARGET: 10+ responses (remember: free tier gets 10 responses!)
+
+---
+
+## OUTREACH METRICS
+
+TIER 1 - PERSONAL NETWORK:
+- Emails sent: [X]
+- Responses: [X]
+- Sign-ups: [X]
+- Conversion rate: [X]%
+
+TIER 2 - LINKEDIN:
+- Connection requests sent: [X]
+- Accepted: [X]
+- Sign-ups: [X]
+
+TIER 3 - COMMUNITIES:
+- Reddit comments: [X]
+- Twitter posts: [X]
+- Indie Hackers posts: [X]
+- Sign-ups from communities: [X]
+
+TOTAL OUTREACH:
+- Total invites sent: [X]
+- Total responses: [X]
+- Overall conversion: [X]%
+
+---
+
+## WEBSITE METRICS
+
+Landing page visits: [Check via GitHub analytics]
+CTA clicks: [Check via traffic to form]
+Mobile traffic: [X]%
+Desktop traffic: [X]%
+
+---
+
+## SIGN-UP QUALITY METRICS
+
+Main stress type mentioned:
+- Debt: [X]%
+- Burnout: [X]%
+- Savings: [X]%
+- Both: [X]%
+
+Feature interest:
+- Mood tracking: [X]%
+- Thought reframing: [X]%
+- Financial leak finder: [X]%
+- Peer matching: [X]%
+- Anonymous chat: [X]%
+
+Recommendation likelihood (from responses):
+- Definitely yes: [X]%
+- Maybe: [X]%
+- Not sure: [X]%
+
+---
+
+## NEXT STEPS
+
+After 10 free responses received:
+- [ ] Send thank you email to all sign-ups
+- [ ] Create getting started guide
+- [ ] Share feedback form (Day 7)
+- [ ] Follow up with personal network
+- [ ] Continue Tier 2 + 3 outreach
+
