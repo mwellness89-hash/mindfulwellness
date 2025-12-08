@@ -76,3 +76,30 @@ python test_api.py
 
 **🚀 100% FREE • Powered by Groq • Ready to run!**
 
+## 🎉 Beta Launch
+
+We're now accepting beta users! 
+
+**[Join the Beta →](https://docs.google.com/forms/d/e/1FAIpQLScYVnBbdaIC-h_nAJ9cTvt3HGiyjzZRX1P8Eopuv6kd_s9xUg/viewform)**
+
+### What You Get:
+- ✅ Free beta access (100% free forever)
+- ✅ Lifetime premium features
+- ✅ Direct founder access
+- ✅ Shape the product with your feedback
+
+### Beta Users Discussion:
+Join our [GitHub Discussions](https://github.com/YOUR_USERNAME/mindfulwellness/discussions)
+
+---
+
+## Launch Status
+
+| Component | Status |
+|-----------|--------|
+| Backend API | ✅ Live |
+| Landing Page | ✅ Live |
+| Sign-up Form | ✅ Live |
+| Discussion Forum | ✅ Live |
+| Beta Users | 📈 Growing |
+
