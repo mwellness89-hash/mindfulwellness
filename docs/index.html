@@ -69,5 +69,387 @@
     }
 
     .panel {
-      background
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 18px 18px 20px;
+      box-shadow: 0 14px 38px rgba(15, 23, 42, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .panel-title {
+      font-size: 14px;
+      font-weight: 650;
+      color: #111827;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .panel-title span.icon {
+      font-size: 16px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card {
+      border-radius: 14px;
+      padding: 12px 10px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .feature-card strong {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 650;
+    }
+
+    .feature-card:hover {
+      background: #eef2ff;
+      border-color: #6366f1;
+      transform: translateY(-2px);
+    }
+
+    .divider-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin: 10px 0 6px;
+    }
+
+    .badge-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: #ecfeff;
+      color: #0e7490;
+      border: 1px solid #22d3ee;
+    }
+
+    .api-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    .api-table th,
+    .api-table td {
+      padding: 6px 4px;
+      text-align: left;
+    }
+
+    .api-table th {
+      font-weight: 600;
+      color: #4b5563;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .api-table code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: #f3f4f6;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 11px;
+    }
+
+    .pill {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #f3f4ff;
+      color: #3730a3;
+      border: 1px solid #c7d2fe;
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 4px;
+    }
+
+    input, textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      padding: 8px 9px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    textarea { min-height: 80px; resize: vertical; }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 1px rgba(99,102,241,0.6);
+    }
+
+    .button-primary {
+      margin-top: 10px;
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg,#6366f1,#4f46e5);
+      color: #ffffff;
+    }
+
+    .button-secondary {
+      margin-top: 8px;
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    .hint {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .success-box {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: #ecfdf3;
+      color: #166534;
+      font-size: 11px;
+      border: 1px solid #4ade80;
+      display: none;
+    }
+
+    .resource-list {
+      list-style: none;
+      font-size: 12px;
+      color: #374151;
+      margin-top: 4px;
+    }
+
+    .resource-list li {
+      margin-top: 4px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .resource-list span.icon {
+      font-size: 14px;
+      margin-top: 1px;
+    }
+
+    .resource-list a {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 24px;
+      font-size: 11px;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    @media (max-width: 960px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="brand">
+        <div class="logo">Mindful<span>Wellness</span></div>
+        <div class="tagline">Financial stress and mental health support, via a simple API and tools.</div>
+      </div>
+      <div class="status-pill">
+        <span>●</span> API live · All endpoints free to use
+      </div>
+    </header>
+
+    <section class="layout">
+      <!-- Left: Quick start + API info -->
+      <div class="panel">
+        <div class="panel-title">
+          <span class="icon">🚀</span>Quick start
+        </div>
+
+        <div class="feature-grid">
+          <a href="mood-tracker.html" class="feature-card">
+            <strong>🧠 Mood Tracking</strong>
+            <span>Rate mood, share thoughts, get instant coaching.</span>
+          </a>
+          <a href="thought-reframer.html" class="feature-card">
+            <strong>💡 Thought Reframer</strong>
+            <span>Turn negative thoughts into realistic alternatives.</span>
+          </a>
+          <a href="expense-analyzer.html" class="feature-card">
+            <strong>💰 Money Leak Finder</strong>
+            <span>Scan subscriptions and spot hidden expenses.</span>
+          </a>
+        </div>
+
+        <div class="divider-label">API information</div>
+        <span class="badge-light">Base URL: <code>https://mindfulwellness.onrender.com</code></span>
+
+        <table class="api-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Method</th>
+              <th>Endpoint</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mood Tracking</td>
+              <td>POST</td>
+              <td><code>/api/mood-checkin</code></td>
+            </tr>
+            <tr>
+              <td>Thought Reframe</td>
+              <td>POST</td>
+              <td><code>/api/thought-reframe</code></td>
+            </tr>
+            <tr>
+              <td>Financial Analyzer</td>
+              <td>POST</td>
+              <td><code>/api/financial-leaks</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pill-row">
+          <span class="pill">No auth required</span>
+          <span class="pill">JSON in · JSON out</span>
+          <span class="pill">Optimized for fast responses</span>
+        </div>
+      </div>
+
+      <!-- Middle: Feedback -->
+      <div class="panel">
+        <div class="panel-title">
+          <span class="icon">✉️</span>Send feedback
+        </div>
+
+        <div class="field-label">Your email (optional)</div>
+        <input id="fb-email" type="email" placeholder="you@example.com" />
+
+        <div class="field-label" style="margin-top:10px;">Your feedback</div>
+        <textarea id="fb-message" placeholder="What worked well? What was confusing or broken?"></textarea>
+
+        <button class="button-primary" onclick="sendFeedback()">Send feedback</button>
+        <p class="hint">Used to improve stability, UX, and new features. No marketing spam.</p>
+        <div id="fb-status" class="success-box">
+          Thank you. Your feedback was received successfully.
+        </div>
+      </div>
+
+      <!-- Right: Resources -->
+      <div class="panel">
+        <div class="panel-title">
+          <span class="icon">📚</span>Resources & support
+        </div>
+
+        <ul class="resource-list">
+          <li>
+            <span class="icon">📧</span>
+            <div>
+              <strong>Email support</strong><br />
+              <a href="mailto:mwellness89@gmail.com">mwellness89@gmail.com</a>
+            </div>
+          </li>
+          <li>
+            <span class="icon">💻</span>
+            <div>
+              <strong>GitHub</strong><br />
+              Report bugs, request features, and see the roadmap.<br />
+              <a href="https://github.com/mwellness89-hash/mindfulwellness" target="_blank">Open repository</a>
+            </div>
+          </li>
+          <li>
+            <span class="icon">🔒</span>
+            <div>
+              <strong>Privacy</strong><br />
+              No user data sold or shared. API requests may be logged only to monitor reliability.
+            </div>
+          </li>
+          <li>
+            <span class="icon">⚙️</span>
+            <div>
+              <strong>Health check</strong><br />
+              Your service should respond at <code>/health</code> when running on Render.
+            </div>
+          </li>
+        </ul>
+
+        <button class="button-secondary" onclick="copyEmail()">Copy support email</button>
+        <div id="copy-status" class="hint"></div>
+      </div>
+    </section>
+
+    <footer>
+      MindfulWellness · Financial stress & mental wellbeing API · 2025.
+    </footer>
+  </div>
+
+  <script>
+    function sendFeedback() {
+      const email = document.getElementById('fb-email').value.trim();
+      const message = document.getElementById('fb-message').value.trim();
+      if (!message) {
+        alert('Please add some feedback before sending.');
+        return;
+      }
+      // Placeholder: hook to backend later.
+      document.getElementById('fb-status').style.display = 'block';
+      document.getElementById('fb-message').value = '';
+    }
+
+    function copyEmail() {
+      const text = 'mwellness89@gmail.com';
+      navigator.clipboard.writeText(text).then(() => {
+        document.getElementById('copy-status').textContent = 'Support email copied to clipboard.';
+        setTimeout(() => document.getElementById('copy-status').textContent = '', 2500);
+      });
+    }
+  </script>
+</body>
+</html>
 
