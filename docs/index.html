@@ -1,37 +1,256 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>MindfulWellness - Dashboard</title>
-<style>
-* {margin:0;padding:0;box-sizing:border-box}
-body {font-family:system-ui;background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh;padding:40px}
-h1 {text-align:center;font-size:48px;color:white;margin-bottom:40px;text-shadow:0 4px 8px rgba(0,0,0,0.3)}
-.grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:30px;max-width:1200px;margin:0 auto}
-.card {background:white;border-radius:24px;padding:40px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);cursor:pointer;transition:all 0.3s;height:220px;display:flex;flex-direction:column;justify-content:center}
-.card:hover {transform:translateY(-10px);box-shadow:0 30px 80px rgba(0,0,0,0.4)}
-.card h2 {font-size:28px;margin-bottom:15px;color:#333}
-.card p {font-size:18px;color:#666;line-height:1.6}
-.mood {border-top:8px solid #667eea}
-.thoughts {border-top:8px solid #51cf66}
-.money {border-top:8px solid #ff6b6b}
-@media(max-width:768px){.grid{grid-template-columns:1fr;padding:20px}.card{padding:30px;height:200px}}
-</style>
+  <meta charset="UTF-8" />
+  <title>MindfulWellness – Beta Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+      background: radial-gradient(circle at top left, #7f5af0 0%, #16161a 55%, #0f172a 100%);
+      min-height: 100vh;
+      color: #e5e7eb;
+      padding: 40px 16px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(15,23,42,0.7);
+      border: 1px solid rgba(148,163,184,0.5);
+      color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      color: #f9fafb;
+    }
+
+    .logo span {
+      color: #38bdf8;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      font-size: 15px;
+      color: #cbd5f5;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .how-it-works {
+      margin-top: 18px;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    .how-it-works span {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .grid {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(15,23,42,0.92);
+      border-radius: 20px;
+      padding: 24px 22px;
+      box-shadow: 0 18px 45px rgba(15,23,42,0.80);
+      border: 1px solid rgba(148,163,184,0.6);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 55%);
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 26px 70px rgba(15,23,42,0.95);
+      border-color: rgba(248,250,252,0.8);
+      background: rgba(15,23,42,0.98);
+    }
+
+    .card-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 650;
+      color: #f9fafb;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .card-title span.icon {
+      font-size: 20px;
+    }
+
+    .card-body {
+      font-size: 14px;
+      color: #d1d5db;
+      line-height: 1.6;
+      margin-top: 4px;
+    }
+
+    .card-meta {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .pill-row {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .pill {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.65);
+      background: rgba(15,23,42,0.85);
+      color: #e5e7eb;
+    }
+
+    footer {
+      margin-top: 32px;
+      font-size: 11px;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    footer a {
+      color: #e5e7eb;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 24px 14px 28px; }
+      .logo { font-size: 22px; }
+      .subtitle { font-size: 14px; }
+      .grid { margin-top: 24px; }
+      .card { padding: 20px 18px; }
+    }
+  </style>
 </head>
 <body>
-<h1>🚀 MindfulWellness</h1>
-<div class="grid">
-  <a href="mood-tracker.html" class="card mood">
-    <h2>🧠 Mood Tracker</h2>
-    <p>Slide your mood (1-10). Share thoughts. Get AI coaching instantly.</p>
-  </a>
-  <a href="thought-reframer.html" class="card thoughts">
-    <h2>💡 Thought Reframer</h2>
-    <p>Share negative thoughts. Get 3 healthier alternatives with CBT.</p>
-  </a>
-  <a href="expense-analyzer.html" class="card money">
-    <h2>💰 Money Leak Finder</h2>
-    <p>List subscriptions. AI finds forgotten expenses. Save $50-200/mo.</p>
-  </a>
-</div>
+  <div class="shell">
+    <header>
+      <div class="badge">
+        <span>●</span> Beta access · 3 guided tools
+      </div>
+      <div class="logo">Mindful<span>Wellness</span></div>
+      <p class="subtitle">
+        A calm space to check in with your mood, challenge stressful thoughts, and find hidden money leaks – in just a few minutes a day.
+      </p>
+      <p class="how-it-works">
+        <span>How it works:</span> Pick a card → answer a few quick questions → get a clear, personalized next step.
+      </p>
+    </header>
+
+    <main class="grid">
+      <a href="mood-tracker.html" class="card">
+        <div class="card-label">Daily check‑in</div>
+        <div class="card-title"><span class="icon">🧠</span>Mood Tracker</div>
+        <p class="card-body">
+          Capture how you feel on a 1–10 scale and share what’s on your mind. Get gentle coaching that turns stress into an action plan for today.
+        </p>
+        <p class="card-meta">Best used: once in the morning, once before bed.</p>
+        <div class="pill-row">
+          <span class="pill">CBT‑style prompts</span>
+          <span class="pill">2–3 minutes</span>
+          <span class="pill">Tracks emotional patterns</span>
+        </div>
+      </a>
+
+      <a href="thought-reframer.html" class="card">
+        <div class="card-label">Thought work</div>
+        <div class="card-title"><span class="icon">💡</span>Thought Reframer</div>
+        <p class="card-body">
+          Paste in a harsh or anxious thought. Get 3 grounded, kinder alternatives based on CBT techniques you can actually believe and use.
+        </p>
+        <p class="card-meta">Use whenever you feel stuck in a negative loop.</p>
+        <div class="pill-row">
+          <span class="pill">Reframe money worries</span>
+          <span class="pill">Evidence‑based prompts</span>
+          <span class="pill">Self‑compassion first</span>
+        </div>
+      </a>
+
+      <a href="expense-analyzer.html" class="card">
+        <div class="card-label">Money clarity</div>
+        <div class="card-title"><span class="icon">💰</span>Money Leak Finder</div>
+        <p class="card-body">
+          Drop in your subscriptions and recurring bills. Spot low‑value expenses, estimate savings, and get a simple plan to free up cash this month.
+        </p>
+        <p class="card-meta">Great first step if money stress is fueling anxiety.</p>
+        <div class="pill-row">
+          <span class="pill">Fast audit</span>
+          <span class="pill">Concrete savings ideas</span>
+          <span class="pill">Pairs with Mood + Thoughts</span>
+        </div>
+      </a>
+    </main>
+
+    <footer>
+      Built for beta testers · Feedback / bugs: <a href="mailto:mwellness89@gmail.com">mwellness89@gmail.com</a>
+    </footer>
+  </div>
 </body>
 </html>
+
