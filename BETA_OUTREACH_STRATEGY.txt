@@ -1,0 +1,96 @@
+# MINDFULWELLNESS BETA OUTREACH STRATEGY
+# Goal: Invite 100+ people in 8 hours
+
+---
+
+## TIER 1: PERSONAL NETWORK (5-10 people) 
+## Best conversion: 50-75%
+## Effort: Personalized emails
+## Timeline: Send first 2 hours (3-5 PM)
+
+CONTACTS:
+1. [Friend/colleague name] - [email] - [why them: debt stress/burnout/etc]
+2. [Family member] - [email] - [their specific struggle]
+3. [Former colleague] - [email] - [context about them]
+4. [College friend] - [email] - [why they'd care]
+5. [LinkedIn mentor] - [email] - [relevant connection]
+
+Template: Highly personalized, mention specific conversation about their struggle
+
+---
+
+## TIER 2: LINKEDIN CONNECTIONS (20-30 people)
+## Conversion: 20-30%
+## Effort: Connection requests + messages
+## Timeline: Send after 2-3 day wait (to not look spammy)
+
+TARGET PROFILES:
+- People in mental health communities
+- Financial wellness coaches
+- Career coaches
+- Therapists/counselors
+- Solo entrepreneurs
+- Indie hackers
+- Life coaches
+- People who posted about stress/financial anxiety
+
+APPROACH:
+1. Go to their profile
+2. Click "Connect" 
+3. Add personalized note mentioning their interests
+
+Example: "Saw your interest in mental health + financial wellness. Building an app that combines both. Would love your feedback as early beta user."
+
+---
+
+## TIER 3: ONLINE COMMUNITIES (50-70 people)
+## Conversion: 10-20%
+## Effort: Authentic comments/posts
+## Timeline: Spread throughout the day
+
+REDDIT COMMUNITIES:
+- r/personalfinance (comment on financial stress threads)
+- r/mentalhealth (comment on anxiety threads)
+- r/IndieHackers (show your project)
+- r/startups (launch post)
+- r/learnprogramming (show your tech)
+
+TWITTER:
+- Reply to people posting about #financial stress
+- Reply to people posting about #mentalhealth
+- Search: #financialanxiety #burnout #debtfree
+- Share your launch on #StartupLife #IndieHackers
+
+INDIE HACKERS:
+- Post about your launch (show GitHub)
+- Comment on relevant discussions
+- Share your landing page
+
+DISCORD COMMUNITIES:
+- Indie hacker servers
+- Mental health communities
+- Startup communities
+- Tech communities
+
+FACEBOOK GROUPS:
+- Financial wellness groups
+- Mental health support groups
+- Entrepreneur groups
+- Indian startup groups
+
+---
+
+## TOTAL TARGETS
+- Tier 1: 10 people
+- Tier 2: 30 people
+- Tier 3: 70 people
+- TOTAL: 110 people
+
+---
+
+## EXPECTED RESULTS
+- Tier 1: 5-7 sign-ups (50-75% conversion)
+- Tier 2: 6-9 sign-ups (20-30% conversion)
+- Tier 3: 7-14 sign-ups (10-20% conversion)
+- TOTAL WEEK 1: 18-30 sign-ups
+

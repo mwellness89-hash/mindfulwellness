@@ -1,0 +1,89 @@
+TIER 3: ONLINE COMMUNITIES (50-70 people)
+
+REDDIT STRATEGY:
+=================
+
+r/personalfinance:
+- Search: "financial stress" "anxiety about money" "debt"
+- Find relevant threads
+- Comment helpfully, then: "Built an app for this, here's the link if interested: [LINK]"
+- Target: 10 comments
+
+r/mentalhealth:
+- Search: "financial" "anxiety" "stress"
+- Comment: "Financial anxiety is real. Building an app for this. Free beta: [LINK]"
+- Target: 10 comments
+
+r/IndieHackers:
+- Post your launch: "Built MindfulWellness in 3 days (AI app for financial stress + mental health)"
+- Show: MVP, GitHub, Landing page, Beta link
+- Target: 1 main post + 5 comments
+
+r/startups:
+- Show your journey: "Built and launched MVP in 3 days, now inviting 100 beta users"
+- Target: 1-2 posts
+
+TWITTER STRATEGY:
+=================
+
+FIND PEOPLE TWEETING ABOUT:
+- #financialstress
+- #mentalhealth
+- #burnout
+- #anxiety
+- #debtfree
+
+ACTION:
+- Reply to their tweets authentically
+- Include: "I built an app for this. Free beta: [LINK]"
+- Share your launch tweet
+
+GOALS:
+- 20 authentic replies to people's tweets
+- 5 original tweets about your launch
+- Retweets from followers
+
+INDIE HACKERS:
+==============
+
+- Post about your launch in "Show IH" section
+- Show: GitHub link, Landing page, Demo, Tech used
+- Target: 500-1000 views, 5-10 sign-ups
+
+DISCORD COMMUNITIES:
+====================
+
+JOIN:
+- Indie Hackers Discord
+- Mental Health Tech Discord
+- Startup communities
+- Indian entrepreneur groups
+
+POST:
+- #launches channel: "MindfulWellness Beta Live - free AI app for financial stress"
+- #general: Brief intro + link
+- #show-and-tell: GitHub + landing page
+
+FACEBOOK GROUPS:
+================
+
+JOIN GROUPS:
+- "Financial Wellness" groups
+- "Mental Health Support" groups
+- "Indian Startups" groups
+- "Entrepreneurship" groups
+
+POST TEMPLATE:
+"Hi everyone,
+
+I'm launching MindfulWellness - an AI app that helps people escape financial stress AND improve mental health.
+
+Built in 3 days with zero budget. Now inviting 100 beta users for free.
+
+[Landing page link]
+
+Would love your feedback!
+
+Cheers,
+[Your name]"
+
