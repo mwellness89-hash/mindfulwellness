@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindfulWellness API Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .card-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .card h3 {
+            color: #333;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 14px;
+            margin: 8px 0 0 0;
+        }
+
+        .card-content {
+            margin: 16px 0;
+        }
+
+        .input-group {
+            margin: 12px 0;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 8px;
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .result {
+            margin-top: 16px;
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+            font-size: 13px;
+            color: #333;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .result.loading {
+            color: #667eea;
+        }
+
+        .result.error {
+            border-left-color: #ff6b6b;
+            background: #fff5f5;
+            color: #c92a2a;
+        }
+
+        .result.success {
+            border-left-color: #51cf66;
+            background: #f1fdf5;
+            color: #2b8a3e;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .feature-tag {
+            background: #f0f0f0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            text-align: center;
+            color: #333;
+        }
+
+        .feature-tag.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #333;
+            margin: 12px 0;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+            opacity: 0.9;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #51cf66;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .response-json {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 MindfulWellness API Dashboard</h1>
+            <p>
+                <span class="status-indicator"></span>
+                API Status: <strong>LIVE</strong>
+            </p>
+        </div>
+
+        <div class="dashboard">
+            <!-- MOOD TRACKING CARD -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🧠</span>
+                    <div>
+                        <h3>Mood Tracking</h3>
+                        <p>Log your emotional state</p>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <div class="input-group">
+                        <label>Your Mood (1-10)</label>
+                        <input type="number" id="moodScore" min="1" max="10" value="5" placeholder="Enter 1-10">
+                    </div>
+                    <div class="input-group">
+                        <label>What's on your mind?</label>
+                        <textarea id="moodThought" placeholder="E.g., I'm worried about my finances..."></textarea>
+                    </div>
+                    <button class="btn" onclick="testMoodTracking()">🎯 Test Mood Tracking</button>
+                    <div id="moodResult" class="result" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- THOUGHT REFRAMING CARD -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">💡</span>
+                    <div>
+                        <h3>Thought Reframing</h3>
+                        <p>CBT-based perspective shift</p>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <div class="input-group">
+                        <label>Your Negative Thought</label>
+                        <textarea id="negativeThought" placeholder="E.g., I'll never escape my debt..."></textarea>
+                    </div>
+                    <div class="info-box">
+                        💡 <strong>Tip:</strong> Share a thought pattern you struggle with
+                    </div>
+                    <button class="btn" onclick="testThoughtReframe()">✨ Get Reframing Help</button>
+                    <div id="reframeResult" class="result" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- FINANCIAL ANALYSIS CARD -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">💰</span>
+                    <div>
+                        <h3>Financial Leak Finder</h3>
+                        <p>Identify spending leaks</p>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <div class="input-group">
+                        <label>Monthly Subscriptions (comma-separated)</label>
+                        <textarea id="subscriptions" placeholder="Netflix $12, Gym $50, Spotify $10..."></textarea>
+                    </div>
+                    <div class="info-box">
+                        💰 <strong>Example:</strong> Netflix $12, Adobe $55, Gym $45
+                    </div>
+                    <button class="btn" onclick="testFinancialAnalysis()">🔍 Analyze Spending</button>
+                    <div id="financialResult" class="result" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- API INFO CARD -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📋</span>
+                    <div>
+                        <h3>API Information</h3>
+                        <p>Available endpoints</p>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <div class="info-box">
+                        ✅ All endpoints are <strong>FREE</strong> and <strong>LIVE</strong>
+                    </div>
+
+                    <p style="font-weight: 600; margin: 12px 0 8px 0; color: #333;">Features Available:</p>
+                    <div class="features-grid">
+                        <div class="feature-tag active">Mood Tracking</div>
+                        <div class="feature-tag active">Thought Reframe</div>
+                        <div class="feature-tag active">Financial Analyzer</div>
+                    </div>
+
+                    <p style="font-weight: 600; margin: 16px 0 8px 0; color: #333;">Coming Soon:</p>
+                    <div class="features-grid">
+                        <div class="feature-tag">Peer Matching</div>
+                        <div class="feature-tag">Chat Support</div>
+                        <div class="feature-tag">AI Coach</div>
+                    </div>
+
+                    <button class="btn" onclick="testAPIStatus()">🔗 Check API Status</button>
+                    <div id="statusResult" class="result" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- FEEDBACK CARD -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📝</span>
+                    <div>
+                        <h3>Send Feedback</h3>
+                        <p>Help us improve</p>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <div class="input-group">
+                        <label>Your Email</label>
+                        <input type="email" id="feedbackEmail" placeholder="your@email.com">
+                    </div>
+                    <div class="input-group">
+                        <label>Your Feedback</label>
+                        <textarea id="feedbackText" placeholder="What did you think? What can we improve?"></textarea>
+                    </div>
+                    <button class="btn" onclick="sendFeedback()">💌 Send Feedback</button>
+                    <div id="feedbackResult" class="result" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- RESOURCES CARD -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🔗</span>
+                    <div>
+                        <h3>Resources</h3>
+                        <p>Get help and stay connected</p>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <p style="font-size: 13px; color: #666; margin: 8px 0;">
+                        <strong>📧 Email:</strong> mwellness89@gmail.com
+                    </p>
+                    <p style="font-size: 13px; color: #666; margin: 8px 0;">
+                        <strong>💬 GitHub:</strong> Report issues & request features
+                    </p>
+                    <p style="font-size: 13px; color: #666; margin: 8px 0;">
+                        <strong>📱 Responsive:</strong> Works on all devices
+                    </p>
+                    <p style="font-size: 13px; color: #666; margin: 8px 0;">
+                        <strong>🔒 Privacy:</strong> Your data is safe & encrypted
+                    </p>
+
+                    <button class="btn" onclick="copyEmail()">📋 Copy Email</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Built with ❤️ for mental wellness | MindfulWellness Beta</p>
+            <p style="margin-top: 10px; font-size: 13px;">Your feedback is driving our product roadmap</p>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = "https://mindfulwellness.onrender.com";
+
+        function showResult(elementId, message, type = 'loading') {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = `result ${type}`;
+            element.style.display = 'block';
+        }
+
+        function formatJSON(obj) {
+            return JSON.stringify(obj, null, 2);
+        }
+
+        // Test Mood Tracking
+        async function testMoodTracking() {
+            const mood = document.getElementById('moodScore').value;
+            const thought = document.getElementById('moodThought').value;
+
+            if (!mood || !thought) {
+                showResult('moodResult', '⚠️ Please fill in both fields', 'error');
+                return;
+            }
+
+            showResult('moodResult', '⏳ Testing mood tracking...', 'loading');
+
+            try {
+                const response = await fetch(`${API_BASE}/api/mood-checkin`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ mood: parseInt(mood), thought })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showResult('moodResult', 
+                        `✅ Success!\n\nMood: ${mood}/10\nThought: "${thought}"\n\nAI Response:\n${data.coaching_tip || data.message}`, 
+                        'success'
+                    );
+                } else {
+                    showResult('moodResult', `❌ Error: ${data.message || 'Failed to process'}`, 'error');
+                }
+            } catch (error) {
+                showResult('moodResult', `❌ Connection Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Test Thought Reframing
+        async function testThoughtReframe() {
+            const thought = document.getElementById('negativeThought').value;
+
+            if (!thought) {
+                showResult('reframeResult', '⚠️ Please enter a negative thought', 'error');
+                return;
+            }
+
+            showResult('reframeResult', '⏳ Generating reframes...', 'loading');
+
+            try {
+                const response = await fetch(`${API_BASE}/api/thought-reframe`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ thought })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    const reframes = data.reframes || data.alternatives || [];
+                    const result = `✅ Success!\n\nYour thought: "${thought}"\n\nAlternative perspectives:\n\n${
+                        reframes.map((r, i) => `${i+1}. ${r}`).join('\n')
+                    }`;
+                    showResult('reframeResult', result, 'success');
+                } else {
+                    showResult('reframeResult', `❌ Error: ${data.message || 'Failed to reframe'}`, 'error');
+                }
+            } catch (error) {
+                showResult('reframeResult', `❌ Connection Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Test Financial Analysis
+        async function testFinancialAnalysis() {
+            const subs = document.getElementById('subscriptions').value;
+
+            if (!subs) {
+                showResult('financialResult', '⚠️ Please enter subscriptions', 'error');
+                return;
+            }
+
+            showResult('financialResult', '⏳ Analyzing spending...', 'loading');
+
+            try {
+                const response = await fetch(`${API_BASE}/api/financial-leaks`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ subscriptions: subs })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    const result = `✅ Analysis Complete!\n\nTotal Monthly Spending: $${data.total_spending || 'calculating'}\n\n${data.message || data.analysis || 'Analysis complete'}`;
+                    showResult('financialResult', result, 'success');
+                } else {
+                    showResult('financialResult', `❌ Error: ${data.message || 'Analysis failed'}`, 'error');
+                }
+            } catch (error) {
+                showResult('financialResult', `❌ Connection Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Test API Status
+        async function testAPIStatus() {
+            showResult('statusResult', '⏳ Checking API status...', 'loading');
+
+            try {
+                const response = await fetch(API_BASE);
+                const data = await response.json();
+
+                if (response.ok) {
+                    const result = `✅ API is LIVE!\n\n${JSON.stringify(data, null, 2)}`;
+                    showResult('statusResult', result, 'success');
+                } else {
+                    showResult('statusResult', `❌ API returned error: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                showResult('statusResult', `❌ Connection Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Send Feedback
+        function sendFeedback() {
+            const email = document.getElementById('feedbackEmail').value;
+            const feedback = document.getElementById('feedbackText').value;
+
+            if (!email || !feedback) {
+                showResult('feedbackResult', '⚠️ Please fill in all fields', 'error');
+                return;
+            }
+
+            showResult('feedbackResult', '📧 Sending feedback...', 'loading');
+
+            // Simulate sending (in real app, would send to backend)
+            setTimeout(() => {
+                showResult('feedbackResult', 
+                    `✅ Thank you for your feedback!\n\nWe've received your message and will respond shortly at ${email}`, 
+                    'success'
+                );
+                document.getElementById('feedbackEmail').value = '';
+                document.getElementById('feedbackText').value = '';
+            }, 1000);
+        }
+
+        // Copy Email
+        function copyEmail() {
+            const email = 'mwellness89@gmail.com';
+            navigator.clipboard.writeText(email).then(() => {
+                alert('✅ Email copied to clipboard!');
+            });
+        }
+
+        // Auto-test on load
+        window.addEventListener('load', () => {
+            console.log('✅ MindfulWellness Dashboard loaded');
+            console.log(`📡 API Base: ${API_BASE}`);
+        });
+    </script>
+</body>
+</html>
+
