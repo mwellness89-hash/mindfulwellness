@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chat Support – MindfulWellness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #e0f2fe);
+      min-height: 100vh;
+      padding: 20px;
+      color: #111827;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      padding: 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      height: 80vh;
+      max-height: 600px;
+    }
+    
+    .header {
+      padding: 16px;
+      border-bottom: 1px solid #e5e7eb;
+      background: #f9fafb;
+    }
+    
+    .back-link {
+      color: #2563eb;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 12px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    h1 {
+      font-size: 18px;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+    
+    .status {
+      font-size: 12px;
+      color: #6b7280;
+    }
+    
+    .chat-window {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .message {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    
+    .message.bot {
+      justify-content: flex-start;
+    }
+    
+    .message.user {
+      justify-content: flex-end;
+    }
+    
+    .message-bubble {
+      max-width: 80%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    
+    .bot .message-bubble {
+      background: #e5e7eb;
+      color: #111827;
+    }
+    
+    .user .message-bubble {
+      background: #6366f1;
+      color: white;
+    }
+    
+    .typing {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      font-size: 12px;
+      color: #6b7280;
+    }
+    
+    .typing span {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #6b7280;
+      animation: bounce 1.4s infinite;
+    }
+    
+    .typing span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .typing span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes bounce {
+      0%, 80%, 100% { opacity: 0.5; }
+      40% { opacity: 1; }
+    }
+    
+    .input-area {
+      padding: 12px;
+      border-top: 1px solid #e5e7eb;
+      display: flex;
+      gap: 8px;
+    }
+    
+    input {
+      flex: 1;
+      padding: 8px 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+    
+    input:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+    
+    button {
+      background: #6366f1;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a class="back-link" onclick="window.history.back()">← Back to dashboard</a>
+      <h1>💬 Chat Support</h1>
+      <div class="status">Get instant answers to your questions</div>
+    </div>
+
+    <div class="chat-window" id="chat-window">
+      <div class="message bot">
+        <div class="message-bubble">👋 Hi! I'm here to help with money and mood questions. What's on your mind?</div>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <input id="message-input" type="text" placeholder="Type your question..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const sampleResponses = [
+      'That\'s a common concern. Here are 3 steps that might help: 1) Track your spending, 2) Set a small goal, 3) Celebrate wins.',
+      'I understand. Many people feel this way. What\'s one small thing you could do today to feel better?',
+      'Great question! Start with self-compassion. You\'re doing better than you think. What would help most right now?',
+      'Let\'s break this down into smaller steps. What\'s the first thing you could tackle?'
+    ];
+
+    function sendMessage() {
+      const input = document.getElementById('message-input');
+      const message = input.value.trim();
+
+      if (!message) return;
+
+      // Add user message
+      const chatWindow = document.getElementById('chat-window');
+      const userMsg = document.createElement('div');
+      userMsg.className = 'message user';
+      userMsg.innerHTML = `<div class="message-bubble">${message}</div>`;
+      chatWindow.appendChild(userMsg);
+
+      input.value = '';
+
+      // Show typing indicator
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'message bot';
+      typingDiv.innerHTML = `<div class="typing"><span></span><span></span><span></span></div>`;
+      chatWindow.appendChild(typingDiv);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+
+      // Simulate response delay
+      setTimeout(() => {
+        typingDiv.remove();
+        const botMsg = document.createElement('div');
+        botMsg.className = 'message bot';
+        const response = sampleResponses[Math.floor(Math.random() * sampleResponses.length)];
+        botMsg.innerHTML = `<div class="message-bubble">${response}</div>`;
+        chatWindow.appendChild(botMsg);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      }, 1500);
+    }
+
+    // Send on Enter key
+    document.getElementById('message-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>
+
