@@ -2,220 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Peer Matching – MindfulWellness</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peer Matching</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      background: linear-gradient(135deg, #e0f7fa, #e0f2fe);
-      min-height: 100vh;
-      padding: 20px;
-      color: #111827;
-    }
-    
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    
-    .back-link {
-      color: #2563eb;
-      text-decoration: underline;
-      cursor: pointer;
-      font-size: 12px;
-      margin-bottom: 12px;
-      display: inline-block;
-    }
-    
-    h1 {
-      font-size: 24px;
-      color: #0f172a;
-      margin-bottom: 8px;
-    }
-    
-    .subtitle {
-      font-size: 13px;
-      color: #6b7280;
-      margin-bottom: 20px;
-    }
-    
-    .form-group {
-      margin-bottom: 16px;
-    }
-    
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 6px;
-      font-size: 13px;
-      color: #374151;
-    }
-    
-    input[type="range"] {
-      width: 100%;
-      margin-bottom: 6px;
-    }
-    
-    select, input[type="text"] {
-      width: 100%;
-      padding: 8px 10px;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      font-size: 13px;
-      color: #111827;
-    }
-    
-    select:focus, input:focus {
-      outline: none;
-      border-color: #6366f1;
-      box-shadow: 0 0 0 2px rgba(99,102,241,0.1);
-    }
-    
-    button {
-      width: 100%;
-      background: linear-gradient(135deg, #6366f1, #4f46e5);
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 999px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 10px;
-      font-size: 13px;
-    }
-    
-    button:hover {
-      opacity: 0.9;
-    }
-    
-    .secondary-btn {
-      background: #f3f4f6;
-      color: #111827;
-      margin-top: 8px;
-    }
-    
-    .result {
-      margin-top: 20px;
-      padding: 16px;
-      background: #f0f9ff;
-      border-radius: 10px;
-      border: 1px solid #bfdbfe;
-      display: none;
-    }
-    
-    .result h3 {
-      font-size: 16px;
-      margin-bottom: 8px;
-      color: #0f172a;
-    }
-    
-    .result p {
-      font-size: 13px;
-      color: #374151;
-      margin-bottom: 6px;
-    }
-    
-    .mood-display {
-      font-weight: 600;
-      color: #6366f1;
-    }
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    label, select, input { display: block; margin-bottom: 10px; }
+    #result { margin-top: 20px; display: none; border: 1px solid #ccc; padding: 10px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a class="back-link" onclick="window.history.back()">← Back to dashboard</a>
-    
-    <h1>🤝 Find a Peer</h1>
-    <p class="subtitle">Connect with someone going through similar struggles. Chat one-on-one.</p>
+  <h1>🤝 Peer Matching</h1>
 
-    <form id="matching-form">
-      <div class="form-group">
-        <label>How's your mood today? (1-10)</label>
-        <input type="range" id="mood-level" min="1" max="10" value="5" />
-        <div>Your mood: <span class="mood-display" id="mood-display">5</span>/10</div>
-      </div>
+  <label for="mood-level">Mood (1-10):</label>
+  <input id="mood-level" type="number" min="1" max="10" value="7" />
 
-      <div class="form-group">
-        <label>Financial stress level</label>
-        <select id="stress-level" required>
-          <option value="">-- Select your stress level --</option>
-          <option value="low">Low – Managing okay</option>
-          <option value="medium">Medium – Some worry</option>
-          <option value="high">High – Lots of stress</option>
-        </select>
-      </div>
+  <label for="stress-level">Stress level:</label>
+  <select id="stress-level">
+    <option value="">Select stress level</option>
+    <option value="low">Low</option>
+    <option value="medium" selected>Medium</option>
+    <option value="high">High</option>
+  </select>
 
-      <div class="form-group">
-        <label>What's your main concern?</label>
-        <select id="concern" required>
-          <option value="">-- Select main concern --</option>
-          <option value="savings">Lack of savings</option>
-          <option value="debt">Debt stress</option>
-          <option value="income">Income uncertainty</option>
-          <option value="expenses">High expenses</option>
-        </select>
-      </div>
+  <label for="concern">Concern:</label>
+  <select id="concern">
+    <option value="">Select concern</option>
+    <option value="debt" selected>Debt</option>
+    <option value="income">Income</option>
+    <option value="savings">Savings</option>
+    <option value="expenses">Expenses</option>
+  </select>
 
-      <button type="button" onclick="findPeer()">🔍 Find a peer</button>
-    </form>
+  <button onclick="findPeer()">Find a peer</button>
 
-    <div id="result" class="result">
-      <h3>Meet <span id="peer-name">Alex</span> 👋</h3>
-      <p><strong>Mood:</strong> <span id="peer-mood">7</span>/10</p>
-      <p><strong>Stress:</strong> <span id="peer-stress">Medium</span></p>
-      <p><strong>Main concern:</strong> <span id="peer-concern">Debt stress</span></p>
-      
-      <button onclick="startChat()">💬 Start chat</button>
-      <button class="secondary-btn" onclick="findPeer()">🔄 Find another peer</button>
-    </div>
+  <div id="result">
+    <h2>Meet your peer</h2>
+    <p><b>Name:</b> <span id="peer-name"></span></p>
+    <p><b>Mood:</b> <span id="peer-mood"></span></p>
+    <p><b>Stress:</b> <span id="peer-stress"></span></p>
+    <p><b>Concern:</b> <span id="peer-concern"></span></p>
   </div>
 
-  <script>
-    // Update mood display when slider changes
-    document.getElementById('mood-level').addEventListener('input', (e) => {
-      document.getElementById('mood-display').textContent = e.target.value;
+<script>
+async function findPeer() {
+  const moodLevel = document.getElementById('mood-level').value;
+  const stressLevel = document.getElementById('stress-level').value;
+  const concern = document.getElementById('concern').value;
+
+  if (!stressLevel || !concern) {
+    alert('⚠️ Please fill all fields');
+    return;
+  }
+
+  try {
+    const response = await fetch('https://mindfulwellness.onrender.com/api/peer-matching', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        mood: parseInt(moodLevel),
+        stress: stressLevel,
+        concern: concern
+      })
     });
 
-    // Find matching peer
-    function findPeer() {
-      const stressLevel = document.getElementById('stress-level').value;
-      const concern = document.getElementById('concern').value;
+    if (!response.ok) throw new Error('API error');
 
-      if (!stressLevel || !concern) {
-        alert('⚠️ Please fill all fields');
-        return;
-      }
+    const peer = await response.json();
 
-      // Simulated peers (replace with real API call later)
-      const mockPeers = [
-        { name: 'Sarah', mood: '6', stress: 'Medium', concern: 'Debt stress' },
-        { name: 'Jordan', mood: '5', stress: 'High', concern: 'Income uncertainty' },
-        { name: 'Casey', mood: '7', stress: 'Low', concern: 'Savings' },
-        { name: 'Morgan', mood: '4', stress: 'High', concern: 'High expenses' }
-      ];
+    document.getElementById('peer-name').textContent = peer.name;
+    document.getElementById('peer-mood').textContent = peer.mood;
+    document.getElementById('peer-stress').textContent = peer.stress;
+    document.getElementById('peer-concern').textContent = peer.concern;
+    document.getElementById('result').style.display = 'block';
 
-      // Pick random peer
-      const peer = mockPeers[Math.floor(Math.random() * mockPeers.length)];
-
-      // Show result
-      document.getElementById('peer-name').textContent = peer.name;
-      document.getElementById('peer-mood').textContent = peer.mood;
-      document.getElementById('peer-stress').textContent = peer.stress;
-      document.getElementById('peer-concern').textContent = peer.concern;
-      document.getElementById('result').style.display = 'block';
-    }
-
-    // Start chat (placeholder)
-    function startChat() {
-      alert('💬 Chat feature coming soon! For now, exchange emails.');
-    }
-  </script>
+  } catch (error) {
+    console.error(error);
+    alert('❌ Could not find peer. Try again.');
+  }
+}
+</script>
 </body>
 </html>
 
